@@ -17,7 +17,7 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
      * |-----------------------------------------------------------|
      * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift |Fn0|
      * |-----------------------------------------------------------|
-     * |Ctrl|Gui |Alt |      Space             |Alt |Fn0 |Gui |Ctrl|
+     * |Ctrl|Alt |Gui |      Space             |Alt |Fn0 |Gui |Ctrl|
      * `-----------------------------------------------------------'
      */
     KEYMAP(
@@ -25,7 +25,7 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
         TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS, \
         CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,NO,  ENT,  \
         LSFT,NO,  Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,FN0, RSFT, \
-        LCTL,LGUI,LALT,          SPC,                     RALT,FN0, RGUI,RCTL),
+        LCTL,LALT,LGUI,          SPC,                     RALT,FN0, RGUI,RCTL),
     /* Keymap 1: Fn Layer
      * ,-----------------------------------------------------------.
      * |  `| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Delete |
@@ -45,6 +45,25 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
         TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,HOME,PGUP,NO,  TRNS, \
         TRNS,NO,  TRNS,APP, FN1, FN2, FN3, VOLD,VOLU,MUTE,END, PGDN,TRNS,TRNS, \
         TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
+    /* Keymap 2: Arrow right side
+     * ,-----------------------------------------------------------.
+     * |  `| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Delete |
+     * |-----------------------------------------------------------|
+     * |     |   |   |   |   |   |   |   |   |   |Up |   |   |     |
+     * |-----------------------------------------------------------|
+     * |      |   |   |   |   |   |   |   |   |Lef|Dow|Rig|        |
+     * |-----------------------------------------------------------|
+     * |        |   |   |Fn1|Fn2|Fn3|   |   |   |   |   |      |   |
+     * |-----------------------------------------------------------|
+     * |    |    |    |                        |    |    |    |    |
+     * `-----------------------------------------------------------'
+     */
+    KEYMAP(
+        GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL, NO,\
+        NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  UP,  NO,  NO,  NO,   \
+        NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  LEFT,DOWN,RGHT,NO,  NO,   \
+        NO,  NO,  NO,  NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  NO,   \
+        TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
 };
 
 /*
@@ -56,9 +75,9 @@ const uint16_t fn_actions[FN_ACTIONS_COUNT] __attribute__ ((section (".keymap.fn
 const uint16_t fn_actions[] PROGMEM = {
 #endif
     [0] = ACTION_LAYER_MOMENTARY(1),
-    [1] = ACTION_BACKLIGHT_DECREASE(),
-    [2] = ACTION_BACKLIGHT_TOGGLE(),
-    [3] = ACTION_BACKLIGHT_INCREASE()
+    [1] = ACTION_LAYER_TOGGLE(0),
+    [2] = ACTION_LAYER_TOGGLE(1),
+    [3] = ACTION_LAYER_TOGGLE(2)
 };
 
 #ifdef KEYMAP_IN_EEPROM_ENABLE
